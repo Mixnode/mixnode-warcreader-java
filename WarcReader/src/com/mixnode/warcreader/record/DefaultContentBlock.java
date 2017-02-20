@@ -1,28 +1,26 @@
 package com.mixnode.warcreader.record;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-
-import org.apache.http.HttpException;
-import org.apache.http.HttpRequest;
-import org.apache.http.ProtocolVersion;
-import org.apache.http.RequestLine;
-import org.apache.http.impl.io.DefaultHttpRequestParser;
-import org.apache.http.impl.io.HttpTransportMetricsImpl;
-import org.apache.http.impl.io.SessionInputBufferImpl;
-import org.apache.http.io.SessionInputBuffer;
-import org.apache.http.message.AbstractHttpMessage;
-
-import com.mixnode.warcreader.WarcFormatException;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.input.BoundedInputStream;
 
+/**
+ * A simple implementation of a WarcContentBlock for 
+ * Most of WARC-Types. This class simply output the input stream
+ * into the payloadStream or a dump file
+ * @author Hadi Jooybar
+ */
 public class DefaultContentBlock implements WarcContentBlock {
 
 	protected InputStream payload;
+
+	/**
+	 * DefaultContentBlock constructor
+	 * @param input Input stream for content block.
+	 */
 	public DefaultContentBlock(final InputStream input) {
 		payload = input;
 	}
@@ -30,14 +28,24 @@ public class DefaultContentBlock implements WarcContentBlock {
 
 	@Override
 	public String toString() {
-		return "";
+		return payload.toString();
 	}
 
+
+	/**
+	 * Returns content block stream as payload
+	 * @return payload stream
+	 */
 	@Override
 	public InputStream payload() throws IOException {
 		return payload;
 	}
 
+	/**
+	 * Dump content of a WARC payload to a file
+	 * @param file output File
+	 * @throws IOException
+	 */
 	@Override
 	public void dump(File file) throws IOException {
 		FileOutputStream out = new FileOutputStream (file);

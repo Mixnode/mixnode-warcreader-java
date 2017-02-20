@@ -1,4 +1,7 @@
 package com.mixnode.warcreader.record;
+
+import com.mixnode.warcreader.WarcFormatException;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,26 +17,43 @@ import org.apache.http.HttpResponse;
 import org.apache.http.ProtocolVersion;
 import org.apache.http.StatusLine;
 import org.apache.http.entity.BasicHttpEntity;
-import org.apache.http.impl.io.ContentLengthInputStream;
 import org.apache.http.impl.io.DefaultHttpResponseParser;
 import org.apache.http.impl.io.HttpTransportMetricsImpl;
 import org.apache.http.impl.io.IdentityInputStream;
 import org.apache.http.impl.io.SessionInputBufferImpl;
-import org.apache.http.io.SessionInputBuffer;
 import org.apache.http.message.AbstractHttpMessage;
-
-import com.mixnode.warcreader.WarcFormatException;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.BoundedInputStream;
-import org.apache.commons.io.input.CountingInputStream;
 
+/**
+ * An implementation of WarcContentBlock interface to handle contents block's of
+ * WARC responses. This class also implements HttpResponse interface. User can cast
+ * the warcRecord.getContentBlock of a response WARC to HttpResponse and process it. 
+ * @author Hadi Jooybar
+ */
 public class ResponseContentBlock extends AbstractHttpMessage implements HttpResponse, WarcContentBlock {
 	private static final int BUFFER_SIZE = 1024;
+
+	/**
+	 * HTTP/S protocol version
+	 */
 	private final ProtocolVersion protocolVersion;
+
+	/**
+	 * HTTP/S Status line
+	 */
 	private final StatusLine statusLine;
+
+	/**
+	 * HTTP/S entity
+	 */
 	private final HttpEntity entity;
 
+	/**
+	 * private constructor from a HttpResponse
+	 * @param response input HttpResponse
+	 * @throws IOException
+	 */
 	private ResponseContentBlock(final HttpResponse response) throws IOException {
 		protocolVersion = response.getProtocolVersion();
 		statusLine = response.getStatusLine();
@@ -41,6 +61,9 @@ public class ResponseContentBlock extends AbstractHttpMessage implements HttpRes
 		entity = response.getEntity();
 	}
 
+	/**
+	 * HttpResponse.getProtocolVersion implementation
+	 */
 	@Override
 	public ProtocolVersion getProtocolVersion() {
 		return protocolVersion;
@@ -53,6 +76,12 @@ public class ResponseContentBlock extends AbstractHttpMessage implements HttpRes
 			   "\nResponse headers: " + Arrays.toString( this.getAllHeaders());
 	}
 
+	/**
+	 * Create a ResponseContentBlock from content block stream of a response WARC
+	 * @param stream Response WARC's content block stream
+	 * @return Output ContentBlock
+	 * @throws IOException
+	 */
 	public static ResponseContentBlock createWarcRecord(final BoundedInputStream stream) throws IOException {
 		SessionInputBufferImpl buffer = new SessionInputBufferImpl( new HttpTransportMetricsImpl(), BUFFER_SIZE, 0, null, null );
 		buffer.bind(stream);
