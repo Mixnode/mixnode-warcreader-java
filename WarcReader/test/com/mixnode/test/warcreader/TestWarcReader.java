@@ -13,7 +13,7 @@ import org.apache.http.HttpResponse;
 public class TestWarcReader {
 	public static void main( final String[] arg ) throws Exception {
 		String fileName = "warc.gz";
-		if (arg[0] != null)
+		if (arg.length > 0 && arg[0] != null)
 			fileName = arg[0];
 		InputStream in = null;
 		try {
@@ -25,6 +25,7 @@ public class TestWarcReader {
 		WarcReader warcReader = new WarcReader(in);
 		WarcRecord record;
 		int numRecords = 0;
+		int i = 0;
 		while ((record = warcReader.readRecord()) != null) {
 			if ((++numRecords)%1000 == 0)
 				System.out.println(numRecords);

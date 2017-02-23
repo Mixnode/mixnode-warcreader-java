@@ -17,7 +17,7 @@ import java.io.InputStream;
 public interface WarcContentBlock {
 	/**
 	 * Returns an InputStream of WARC payload
-	 * Payload referres to, or contained by a WARC record as a meaningful subset of the content block
+	 * Payload referred to, or contained by a WARC record as a meaningful subset of the content block
 	 * @return payload InputStream
 	 * @throws IOException
 	 */
