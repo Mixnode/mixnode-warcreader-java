@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 /**
  * WarcContentBlock interface represents content block of a WARC record
- * Here is a list of known implementation of this interface
+ * Here is a list of known implementations of this interface
  * <ul>
  * <li> RequestContentBlock
  * <li> ResponseContentBlock
@@ -16,7 +16,7 @@ import java.io.InputStream;
  */
 public interface WarcContentBlock {
 	/**
-	 * Returns an InputStream of WARC payload
+	 * Return an InputStream of WARC payload
 	 * Payload referred to, or contained by a WARC record as a meaningful subset of the content block
 	 * @return payload InputStream
 	 * @throws IOException

@@ -11,9 +11,9 @@ import org.apache.commons.httpclient.HttpParser;
 import org.apache.commons.io.input.BoundedInputStream;
 
 /**
- * WarcReader class provides basic function to read and parse
- * a WARC file. Providing a compressed or uncompressed stream of WARC file,
- * WarcReader read WARC records and parse is to a WarcRecord object
+ * WarcReader class provides basic functions to read and parse
+ * a WARC file. Providing a compressed or an uncompressed stream of WARC file,
+ * WarcReader reads WARC records and parses it to a WarcRecord object
  * @author Hadi Jooybar
  */
 public class WarcReader {
@@ -24,9 +24,9 @@ public class WarcReader {
 
 	/**
 	 * Charset used for parser
-	 * Default value is "US-ASCII"
+	 * Default value is "UTF-8"
 	 */
-	protected String charset = "US-ASCII";
+	protected String charset = "UTF-8";
 
 	/**
 	 * Internal pointer to the last read WARC record
@@ -35,7 +35,7 @@ public class WarcReader {
 
 	/**
 	 * Create a WarcReader object for a Compressed stream of a WARC file
-	 * @param compressedStream Input compressed stream
+	 * @param compressedStream Compressed input stream
 	 * @throws IOException
 	 */
 	public WarcReader (InputStream compressedStream) throws IOException {
@@ -71,8 +71,8 @@ public class WarcReader {
 
 	/**
 	 * Read a WARC record from A WARC file
-	 * By a call to this function WARC reader will pass the last record.
-	 * This means that any stream from a WARC record will not be accessible
+	 * By a call to this function WARC reader will skip the current record.
+	 * This means that any stream from current WARC record will not be accessible
 	 * after a new 'readRecord' call.
 	 * @return a WARC record object
 	 * @throws IOException
@@ -90,9 +90,9 @@ public class WarcReader {
 	/**
 	 * Base on WARC format specification 'parse' function parses
 	 * a WARC record and create a WarcRecord object
-	 * This function throw WarcFomatException if the structure of input file
-	 * is incorrect. Explanation for parse error is provided
-	 * in WarcFomatException message
+	 * This function throw WarcFomatException if the structure of an input file
+	 * is invalid. Explanation for parse error is provided
+	 * in the WarcFomatException message
 	 * @return Output WARC record
 	 * @throws WarcFormatException
 	 */

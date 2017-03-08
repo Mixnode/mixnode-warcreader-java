@@ -77,7 +77,7 @@ public class ResponseContentBlock extends AbstractHttpMessage implements HttpRes
 	}
 
 	/**
-	 * Create a ResponseContentBlock from content block stream of a response WARC
+	 * Create a ResponseContentBlock from a content block stream of a response WARC
 	 * @param stream Response WARC's content block stream
 	 * @return Output ContentBlock
 	 * @throws IOException

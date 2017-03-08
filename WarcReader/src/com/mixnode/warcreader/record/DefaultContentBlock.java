@@ -10,7 +10,7 @@ import org.apache.commons.io.IOUtils;
 /**
  * A simple implementation of a WarcContentBlock for 
  * Most of WARC-Types. This class simply output the input stream
- * into the payloadStream or a dump file
+ * into the payloadStream or a file
  * @author Hadi Jooybar
  */
 public class DefaultContentBlock implements WarcContentBlock {
@@ -33,7 +33,7 @@ public class DefaultContentBlock implements WarcContentBlock {
 
 
 	/**
-	 * Returns content block stream as payload
+	 * Return content block stream as payload
 	 * @return payload stream
 	 */
 	@Override
