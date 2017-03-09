@@ -1,5 +1,5 @@
-# Mixnode Warc Reader for Java
-This project is an open-source very simple WARC reader which can parse a WARC file base on <a href="https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.0/">  WARC-1.1 </a> standard. 
+# Mixnode WARC Reader for Java
+This library makes reading WARC files in Java extremely easy. It is open source and compatible with the latest WARC standard (<a href="https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.0/">  WARC-1.1 </a>).
 
 <b>Build the Project</b>
 
