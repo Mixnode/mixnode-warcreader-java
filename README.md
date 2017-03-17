@@ -1,7 +1,7 @@
 # Mixnode WARC Reader for Java
 This library makes reading WARC files in Java extremely easy. It is open source and compatible with the latest WARC standard (<a href="https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.0/">  WARC-1.1 </a>).
 
-<b>Build the Project</b>
+## Build the Project
 
 This project uses <a href="https://maven.apache.org/">Maven</a> for building the code and managing thedependecies.
 
@@ -15,7 +15,7 @@ To use this library in your code you have to include WarcReader-1.jar and all ja
 This command also compiles the test and store the class file in <I>target/test/</I> folder.
 
 
-<b>Run the Test:</b>
+## Running the Test
 
 By adding the WarcReader jar file and all dependent jar files in <I>dependency/</I> folder, into java classpath you can run the java test.
 
